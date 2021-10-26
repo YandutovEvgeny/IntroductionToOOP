@@ -1,5 +1,8 @@
 ﻿#include<iostream>
 using namespace std;
+using std::cin;
+using std::cout;
+using std::endl;
 
 class Point
 {
@@ -48,15 +51,16 @@ public:
 	}
 
 	//      Operators:
-	void operator=(const Point& other)
+	Point& operator=(const Point& other)
 	{
 		this->x = other.x;
 		this->y = other.y;
 		cout << "CopyAssignment:\t\t" << this << endl;
+		return *this;
 	}
 
 	//      Methods:
-	double distance(Point other)
+	double distance(const Point& other)
 	{
 		/*double x_distance = this->x - other.x;
 		double y_distance = this->y - other.y;
@@ -70,7 +74,7 @@ public:
 	}
 };
 
-double distance(Point A, Point B)
+double distance(const Point& A, const Point& B)
 {
 	double x_distance = A.get_x() - B.get_x();
 	double y_distance = A.get_y() - B.get_y();
@@ -78,8 +82,11 @@ double distance(Point A, Point B)
 	return distance;
 }
 
+#define delimiter "\n----------------------------------------\n"
 //#define STRUCT_POINT
 //#define DISTANCE
+//#define CONSTRUCTORS_CHECK
+//#define ASSIGNMENT_CHECK
 
 void main()
 {
@@ -97,7 +104,6 @@ void main()
 	Point* pA = &A;
 	cout << pA->x << "\t" << pA->y << endl;
 #endif // STRUCT_POINT
-
 #ifdef DISTANCE
 	Point A;
 	A.set_x(2);
@@ -110,13 +116,18 @@ void main()
 	cout << B.get_x() << "\t" << B.get_y() << endl;
 
 	cout << "Расстояние от точки А до точки Б: " << A.distance(B) << endl;
+	cout << delimiter << endl;
 	cout << "Расстояние от точки Б до точки А: " << B.distance(A) << endl;
+	cout << delimiter << endl;
 	cout << "Расстояние междуточками А и Б: " << distance(A, B) << endl;
+	cout << delimiter << endl;
 	cout << "Расстояние междуточками Б и А: " << distance(B, A) << endl;
+	cout << delimiter << endl;
 #endif // DISTANCE
+#ifdef CONSTRUCTORS_CHECK
 	Point A;    //Default constructor
 	A.print();
-	
+
 	Point B(2, 3);
 	B.print();
 
@@ -126,5 +137,25 @@ void main()
 	Point D;     //Copy assignments - оператор присваивания
 	D = B;
 	D.print();
-	
+#endif // CONSTRUCTORS_CHECK
+#ifdef ASSIGNMENT_CHECK
+	int a, b, c;
+	a = b = c = 1;
+	cout << a << "\t" << b << "\t" << c << endl;
+
+	Point A, B, C;
+	cout << delimiter << endl;
+	A = B = C = Point(2, 3);      
+	//Point(2,3) - явный вызов конструктора. 
+	//Таким образом создаётя временный безымянный объект,
+	//который существует только в пределах выражения, и удаляется после 
+	//завершения выражения.
+	cout << delimiter << endl;
+	A.print();
+	B.print();
+	C.print();
+#endif
+	Point A(2, 3);
+	Point B(3, 4);
+	//Point C = A + B;  <- No way
 }
