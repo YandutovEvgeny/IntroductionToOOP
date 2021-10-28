@@ -59,6 +59,23 @@ public:
 		return *this;
 	}
 
+	//      Increment/Decrement
+	Point& operator++()    //Prefix increment
+	{
+		this->x++;
+		this->y++;
+		cout << "PrefixIncrement:\t" << this << endl;
+		return *this;
+	}
+	Point operator++(int) //Postfix increment
+	{
+		Point old = *this;  //Сохраняем текущее значение нашего объекта
+		this->x++;
+		this->y++;
+		cout << "PostfixIncrement:\t" << this << endl;
+		return old;
+	}
+
 	//      Methods:
 	double distance(const Point& other)
 	{
@@ -82,11 +99,35 @@ double distance(const Point& A, const Point& B)
 	return distance;
 }
 
+Point operator+(const Point& left, const Point& right)
+{
+	Point buffer;
+	buffer.set_x(left.get_x() + right.get_x());
+	buffer.set_y(left.get_y() + right.get_y());
+	return buffer;
+}
+
+ostream& operator<<(ostream& os, const Point& obj)
+{
+	os << "X= " << obj.get_x() << "\t" << "Y= " << obj.get_y();
+	return os;
+}
+
+istream& operator>>(istream& is, Point& obj)
+{
+	double x, y;
+	is >> x >> y;
+	obj.set_x(x);
+	obj.set_y(y);
+	return is;
+}
+
 #define delimiter "\n----------------------------------------\n"
 //#define STRUCT_POINT
 //#define DISTANCE
 //#define CONSTRUCTORS_CHECK
 //#define ASSIGNMENT_CHECK
+//#define ARITHMETICAL_OPERATORS_CHECK
 
 void main()
 {
@@ -155,7 +196,26 @@ void main()
 	B.print();
 	C.print();
 #endif
+#ifdef ARITHMETICAL_OPERATORS_CHECK
 	Point A(2, 3);
 	Point B(3, 4);
-	//Point C = A + B;  <- No way
+	Point C = A + B;  //Чтобы "научить" оператор + складывать точки, 
+					  //его нужно ПЕРЕГРУЗИТЬ ДЛЯ КЛАССА ТОЧКА!!!
+	C.print();
+#endif // ARITHMETICAL_OPERATORS_CHECK
+	
+	/*for (Point i(2, 3); i.get_x() < 10; i++)
+	{
+		i.print();
+	}*/
+	Point A(2, 3);
+	Point B = A++;
+	/*A.print();
+	B.print();*/
+	cout << A << endl;
+	cout << B << endl;
+
+	cout << "Введите координаты точки A: "; 
+	cin >> A;
+	cout << A << endl;
 }
