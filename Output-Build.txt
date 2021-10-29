@@ -1,0 +1,7 @@
+﻿Build started...
+1>------ Build started: Project: Fraction, Configuration: Debug Win32 ------
+1>Fraction.cpp
+1>C:\Users\Admin\source\repos\Introduction to OOP\Fraction\Fraction.cpp(124,1): warning C4326: return type of 'main' should be 'int' instead of 'void'
+1>Fraction.vcxproj -> C:\Users\Admin\source\repos\Introduction to OOP\Debug\Fraction.exe
+1>Done building project "Fraction.vcxproj".
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
