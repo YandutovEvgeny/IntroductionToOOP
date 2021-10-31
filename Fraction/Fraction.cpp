@@ -154,6 +154,37 @@ public:
 		return old;
 	}
 
+	//                       Compaison Operators
+	bool operator==(const Fraction& other)
+	{
+		return this->integer == other.integer && this->numerator == other.numerator && this->denominator == other.denominator;
+	}
+	
+	bool operator!=(const Fraction& other)
+	{
+		return !(this->integer == other.integer && this->numerator == other.numerator && this->denominator == other.denominator);
+	}
+
+	bool operator>(const Fraction& other)
+	{
+		return this->integer > other.integer && this->numerator > other.numerator && this->denominator > other.denominator;
+	}
+
+	bool operator<(const Fraction& other)
+	{
+		return this->integer < other.integer && this->numerator < other.numerator && this->denominator < other.denominator;
+	}
+
+	bool operator>=(const Fraction& other)
+	{
+		return this->integer >= other.integer && this->numerator >= other.numerator && this->denominator >= other.denominator;
+	}
+
+	bool operator<=(const Fraction& other)
+	{
+		return this->integer <= other.integer && this->numerator <= other.numerator && this->denominator <= other.denominator;
+	}
+
 
 	//           Methods:
 	void to_proper()
@@ -187,6 +218,7 @@ public:
 	}
 }; 
 
+//                      cin/cout
 ostream& operator<<(ostream& os, const Fraction& obj)
 {
 	os << obj.get_integer() << "\t" << obj.get_numerator() << "\t" << obj.get_denominator();
@@ -203,6 +235,7 @@ istream& operator>>(istream& is, Fraction& obj)
 	return is;
 }
 
+//                 Arithmetical operators
 Fraction operator+(const Fraction& left, const Fraction& right)
 {
 	Fraction buffer;
@@ -240,7 +273,6 @@ Fraction operator/(const Fraction& left, const Fraction& right)
 }
 
 //#define CONSTRUCTORS_CHECK
-#define ARITHMETICAL_OPERATORS_CHECK
 
 void main()
 {
@@ -265,7 +297,10 @@ void main()
 	/*cout << "Введите целую часть, числитель и знаменатель дроби: "; cin >> A;
 	cout << A << endl;*/
 	Fraction B(3, 5, 1);
+	cout << B << endl;
 	Fraction C = A + B;
-	Fraction D = A++;
-	cout << A << endl;
+	Fraction D = A >= B;
+	if (D == 1)cout << "True" << endl;
+	else cout << "False" << endl;
+	cout << D << endl;
 }
