@@ -202,7 +202,7 @@ public:
 	void reduce()
 	{
 		//Сокращает дробь:
-
+		
 	}
 	void print()
 	{
@@ -288,19 +288,21 @@ void main()
 	D.print();
 #endif // CONSTRUCTORS_CHECK
 
-	Fraction A(14, 5, 10);
-	/*A.to_proper();
+	Fraction A(3, 4, 8);
+	A.to_proper();
 	A.print();
 	A.to_improper();
-	A.print();*/
+	A.print();
+	A.reduce();
+	A.print();
 	cout << A << endl;
 	/*cout << "Введите целую часть, числитель и знаменатель дроби: "; cin >> A;
-	cout << A << endl;*/
+	cout << A << endl;
 	Fraction B(3, 5, 1);
 	cout << B << endl;
 	Fraction C = A + B;
 	Fraction D = A >= B;
 	if (D == 1)cout << "True" << endl;
 	else cout << "False" << endl;
-	cout << D << endl;
+	cout << D << endl;*/
 }
